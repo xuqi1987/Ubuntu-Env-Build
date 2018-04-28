@@ -28,7 +28,7 @@
 	docker run -p 80:80 --name mynginx -v $PWD/www:/www -v $PWD/conf/nginx.conf:/etc/nginx/conf.d/ -v $PWD/logs:/wwwlogs  -d nginx  
 
 ### 安装phpMyAdmin
-	docker run --name myadmin -d --link mymysql:db -p 8080:80 phpmyadmin/phpmyadmin
+	docker run --name myadmin -d --link mymysql:db -p 8082:80 phpmyadmin/phpmyadmin
 	
 ### 安装adminer
 	docker run --name myadminer -d --link mymysql:db -p 8081:8080 adminer
