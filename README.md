@@ -32,3 +32,24 @@
 	
 ### 安装adminer
 	docker run --name myadminer -d --link mymysql:db -p 8081:8080 adminer
+
+### 安装 WordPress
+	docker run --name mywordpress -e WORDPRESS_DB_USER=root -e WORDPRESS_DB_PASSWORD=Xq111111 --link mymysql:mysql -p 8001:80 -d wordpress
+
+###	Docker 安装 Redis
+	mkdir -p ~/redis ~/redis/data
+	cd ~/redis
+	docker run --name myredis -p 6379:6379 -v $PWD/data:/data  -d redis:3.2 redis-server --appendonly yes
+
+###	使用Docker Client 连接Redis
+	alias redis-cli='docker exec -it myredis redis-cli'
+	redis-cli
+
+### 安装mongo
+	mkdir -p ~/mongo  ~/mongo/db
+	cd ~/mongo
+	docker run --name mymongo -p 27017:27017 -v $PWD/db:/data/db -d mongo:3.2
+
+### 使用Docker Client 连接mongo
+	alias mongo='docker run -it mongo:3.2 mongo'
+	mongo --host x1000.top
