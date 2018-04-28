@@ -53,3 +53,15 @@
 ### 使用Docker Client 连接mongo
 	alias mongo='docker run -it mongo:3.2 mongo'
 	mongo --host x1000.top
+
+### 安装ownCloud
+	mkdir -p ~/ownCloud/apps ~/ownCloud/config 
+	ln -s ~/data ~/ownCloud/data
+	cd ~/ownCloud
+	docker run  --name myownCloud -p 8083:80 -v $PWD/apps:/var/www/html/apps -v $PWD/config:/var/www/html/config -v $PWD/data:/var/www/html/data -d owncloud:8.1
+	
+### 安装aria2-with-webui
+	mkdir -p ~/aria2/conf 
+	ln -s ~/data ~/aria2/data
+	cd ~/aria2
+	docker run -d --name myaria2 -p 6800:6800 -p 8084:80 -p 6888:8080 -v $PWD/data:/data -v $PWD/conf:/conf -e SECRET=Xq111111 xujinkai/aria2-with-webui
