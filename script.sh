@@ -4,7 +4,7 @@ docker run -dt --name ss -p 6443:6443 mritd/shadowsocks -s "-s 0.0.0.0 -p 6443 -
 
 mkdir -p ~/mysql/data ~/mysql/logs ~/mysql/conf
 cd ~/mysql
-docker run -p 3306:3306 --name mymysql -v $PWD/conf:/etc/mysql/conf.d -v $PWD/logs:/logs -v $PWD/data:/mysql_data -e MYSQL_ROOT_PASSWORD=Xq111111 -d mysql
+docker run -p 3306:3306 --name mymysql -v $PWD/conf:/etc/mysql/conf.d -v $PWD/logs:/logs -v $PWD/data:/mysql_data -e MYSQL_ROOT_PASSWORD=Xq111111 -d mysql:5.7
 
 mkdir -p ~/nginx/www ~/nginx/logs ~/nginx/conf
 chmod -R 755 www/

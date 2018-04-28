@@ -15,7 +15,7 @@
 ### 安装mysql Server
 	mkdir -p ~/mysql/data ~/mysql/logs ~/mysql/conf
 	cd ~/mysql
-	docker run -p 3306:3306 --name mymysql -v $PWD/conf:/etc/mysql/conf.d -v $PWD/logs:/logs -v $PWD/data:/mysql_data -e MYSQL_ROOT_PASSWORD=Xq111111 -d mysql
+	docker run -p 3306:3306 --name mymysql -v $PWD/conf:/etc/mysql/conf.d -v $PWD/logs:/logs -v $PWD/data:/mysql_data -e MYSQL_ROOT_PASSWORD=Xq111111 -d mysql:5.7
 
 ##### 使用Docker Client 连接Mysql
 	alias mysql_c='docker run -it --rm mysql mysql'
