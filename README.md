@@ -65,3 +65,16 @@
 	ln -s ~/data ~/aria2/data
 	cd ~/aria2
 	docker run -d --name myaria2 -p 6800:6800 -p 8084:80 -p 6888:8080 -v $PWD/data:/data -v $PWD/conf:/conf -e SECRET=Xq111111 xujinkai/aria2-with-webui
+	
+### 安装filebrowser
+	mkdir -p  ~/filebrowser
+	ln -s ~/data ~/filebrowser/data
+	cd ~/filebrowser
+	docker run -d --name myfilebrowser -v $PWD/data:/srv -p 8085:80 hacdias/filebrowser
+	
+### 安装h5ai
+	mkdir -p ~/h5ai
+	ln -s ~/data ~/h5ai/data
+	cd ~/h5ai
+	docker run -d --name myh5ai -p 8087:80 -v $PWD/data:/var/www -v $PWD/h5ai.nginx.conf:/etc/nginx/sites-enabled/h5.conf corfr/h5ai
+	
