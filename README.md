@@ -77,4 +77,24 @@
 	ln -s ~/data ~/h5ai/data
 	cd ~/h5ai
 	docker run -d --name myh5ai -p 8087:80 -v $PWD/data:/var/www -v $PWD/h5ai.nginx.conf:/etc/nginx/sites-enabled/h5.conf corfr/h5ai
+
+### 安装Hexo
+	mkdir -p ~/hexo
+	cd ~/hexo
+	git clone https://github.com/xuqi1987/Hexo-Github-Blog.git
+	git clone https://github.com/xuqi1987/xuqi1987.github.io.git
+	docker run  -d --name myhexo -p 8090:4000 -v $PWD/Hexo-Github-Blog:/opt/hexo/ipple1986 ipple1986/hexo
+
+	alias hexo='docker exec -it myhexo hexo'
+
+### 安装 Domoticz
+	mkdir -p ~/Domoticz/config
+    cd ~/Domoticz
+    docker run -d -i -t --name mydomoticz -p 9000:31080 -p 443:31443 -v $PWD/config:/config dt27/domoticz-cn:Stable```
+docker exec domoticz crond
+
+网页登录帐号密码均为`domoticz`
+		
+	
+
 	
