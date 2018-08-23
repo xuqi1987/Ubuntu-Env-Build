@@ -98,3 +98,20 @@ docker exec domoticz crond
 	
 
 	
+### 安装frps
+	git clone https://github.com/fatedier/frp.git
+	cd frp
+	docker build . -t xuqi/frps
+	docker run -d --name myfrps -p 7000:7000 -p 6000:6000 -p 6001:6001 -v $PWD/conf:/conf xuqi/frps
+
+### 安装aria2-ariang
+	mkdir -p ~/aria2-ariang
+	cd aria2-ariang
+	ln -s ~/data ./data
+	docker run -d --name myariang -p 8089:80 -p 6800:6800  -v $PWD/data/download:/data  wahyd4/aria2-ariang	
+	
+### redis
+	docker run -d --name myredis -p 6379:6379 redis
+	
+### Celery
+	docker run --link myredis:redis -e CELERY_BROKER_URL=redis://localhost:6379/0 --name mycelery -d celery
