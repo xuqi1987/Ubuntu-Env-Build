@@ -115,3 +115,10 @@ docker exec domoticz crond
 	
 ### Celery
 	docker run --link myredis:redis -e CELERY_BROKER_URL=redis://localhost:6379/0 --name mycelery -d celery
+	
+### Node-RED
+mkdir -p ~/node-red-data
+cd ~/node-red-data
+docker run -d -p 1880:1880 -v $PWD:/data --name mynodered nodered/node-red-docker
+docker start mynodered
+
