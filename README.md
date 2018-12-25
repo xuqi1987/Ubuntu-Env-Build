@@ -117,7 +117,16 @@ docker exec domoticz crond
 	docker run --link myredis:redis -e CELERY_BROKER_URL=redis://localhost:6379/0 --name mycelery -d celery
 	
 ### Node-RED
-docker run -it -p 1880:1880 --name mynodered nodered/node-red-docker
+mkdir -p ~/node-red-data
+cd node-red-data
+docker run -d --name mynodered -p 1880:1880 -v ~/node-red-data:/data  nodered/node-red-docker
 
+
+### mosquitto
+	mkdir -p ~/mosquitto/config
+	mkdir -p ~/mosquitto/data
+	mkdir -p ~/mosquitto/log
+	cd mosquitto
+	docker run -d --name mymosquitto -p 1883:1883 -p 9001:9001 -v mosquitto.conf:$PWD/config/mosquitto.conf -v $PWD/data -v $PWD/log eclipse-mosquitto
 
 
