@@ -2,7 +2,7 @@
 
 
 ## 修改SSH端口号
-```shell
+```powershell
 vi /etc/ssh/sshd_config  
 Port 22222
 ```
@@ -11,7 +11,7 @@ Port 22222
 
 #### 安装Docker软件安装
 
-```shell
+```powershell
 wget -qO- https://get.docker.com/ | sh
 ```
 
@@ -154,15 +154,15 @@ docker exec domoticz crond
 网页登录帐号密码均为`domoticz`
 
 
-### 安装frps
-``` powershell
+#### frps
+```powershell
 git clone https://github.com/fatedier/frp.git
 cd frp
 docker build . -t xuqi/frps
 docker run -d --name myfrps -p 7000:7000 -p 6000:6000 -p 6001:6001 -v $PWD/conf:/conf xuqi/frps
 ```
 
-### 安装aria2-ariang
+#### aria2-ariang
 ```powershell
 mkdir -p ~/aria2-ariang
 cd aria2-ariang
@@ -170,12 +170,12 @@ ln -s ~/data ./data
 docker run -d --name myariang -p 8089:80 -p 6800:6800  -v $PWD/data/download:/data  wahyd4/aria2-ariang	
 ```
 
-### Celery
+#### Celery
 ```powershell
 docker run --link myredis:redis -e CELERY_BROKER_URL=redis://localhost:6379/0 --name mycelery -d celery
 ```
 
-### Node-RED
+#### Node-RED
 
 ```powershell
 mkdir -p ~/node-red-data
@@ -184,7 +184,7 @@ docker run -d --name mynodered -p 1880:1880 -v ~/node-red-data:/data  nodered/no
 ```
 
 
-### mosquitto
+#### mosquitto
 ```powershell
 mkdir -p ~/mosquitto/config
 mkdir -p ~/mosquitto/data
