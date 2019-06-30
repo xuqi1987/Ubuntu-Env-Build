@@ -101,61 +101,79 @@ docker run --name mywordpress -e WORDPRESS_DB_USER=root -e WORDPRESS_DB_PASSWORD
 ```
 
 #### ownCloud
-	mkdir -p ~/ownCloud/apps ~/ownCloud/config 
-	ln -s ~/data ~/ownCloud/data
-	cd ~/ownCloud
-	docker run  --name myownCloud -p 8083:80 -v $PWD/apps:/var/www/html/apps -v $PWD/config:/var/www/html/config -v $PWD/data:/var/www/html/data -d owncloud:8.1
+```powershell
+mkdir -p ~/ownCloud/apps ~/ownCloud/config 
+ln -s ~/data ~/ownCloud/data
+cd ~/ownCloud
+docker run  --name myownCloud -p 8083:80 -v $PWD/apps:/var/www/html/apps -v $PWD/config:/var/www/html/config -v $PWD/data:/var/www/html/data -d owncloud:8.1
+```
 
 #### aria2-with-webui
-	mkdir -p ~/aria2/conf 
-	ln -s ~/data ~/aria2/data
-	cd ~/aria2
-	docker run -d --name myaria2 -p 6800:6800 -p 8084:80 -p 6888:8080 -v $PWD/data:/data -v $PWD/conf:/conf -e SECRET=Xq111111 xujinkai/aria2-with-webui
+```powershell
+mkdir -p ~/aria2/conf 
+ln -s ~/data ~/aria2/data
+cd ~/aria2
+docker run -d --name myaria2 -p 6800:6800 -p 8084:80 -p 6888:8080 -v $PWD/data:/data -v $PWD/conf:/conf -e SECRET=Xq111111 xujinkai/aria2-with-webui
+```
 
 #### filebrowser
-	mkdir -p  ~/filebrowser
-	ln -s ~/data ~/filebrowser/data
-	cd ~/filebrowser
-	docker run -d --name myfilebrowser -v $PWD/data:/srv -p 8085:80 hacdias/filebrowser
+```powershell
+mkdir -p  ~/filebrowser
+ln -s ~/data ~/filebrowser/data
+cd ~/filebrowser
+docker run -d --name myfilebrowser -v $PWD/data:/srv -p 8085:80 hacdias/filebrowser
+```
 
 #### h5ai
-	mkdir -p ~/h5ai
-	ln -s ~/data ~/h5ai/data
-	cd ~/h5ai
-	docker run -d --name myh5ai -p 8087:80 -v $PWD/data:/var/www -v $PWD/h5ai.nginx.conf:/etc/nginx/sites-enabled/h5.conf corfr/h5ai
+```powershell
+mkdir -p ~/h5ai
+ln -s ~/data ~/h5ai/data
+cd ~/h5ai
+docker run -d --name myh5ai -p 8087:80 -v $PWD/data:/var/www -v $PWD/h5ai.nginx.conf:/etc/nginx/sites-enabled/h5.conf corfr/h5ai
+```
 
 #### Hexo
-	mkdir -p ~/hexo
-	cd ~/hexo
-	git clone https://github.com/xuqi1987/Hexo-Github-Blog.git
-	git clone https://github.com/xuqi1987/xuqi1987.github.io.git
-	docker run  -d --name myhexo -p 8090:4000 -v $PWD/Hexo-Github-Blog:/opt/hexo/ipple1986 ipple1986/hexo
-	
-	alias hexo='docker exec -it myhexo hexo'
+```powershell
+mkdir -p ~/hexo
+cd ~/hexo
+git clone https://github.com/xuqi1987/Hexo-Github-Blog.git
+git clone https://github.com/xuqi1987/xuqi1987.github.io.git
+docker run  -d --name myhexo -p 8090:4000 -v $PWD/Hexo-Github-Blog:/opt/hexo/ipple1986 ipple1986/hexo
+
+alias hexo='docker exec -it myhexo hexo'
+```
 
 #### Domoticz
-	mkdir -p ~/Domoticz/config
-	cd ~/Domoticz
-	docker run -d -i -t --name mydomoticz -p 9000:31080 -p 443:31443 -v $PWD/config:/config dt27/domoticz-cn:Stable```
+```powershell
+mkdir -p ~/Domoticz/config
+cd ~/Domoticz
+docker run -d -i -t --name mydomoticz -p 9000:31080 -p 443:31443 -v $PWD/config:/config dt27/domoticz-cn:Stable```
+```
 docker exec domoticz crond
 
 网页登录帐号密码均为`domoticz`
 
 
 ### 安装frps
-	git clone https://github.com/fatedier/frp.git
-	cd frp
-	docker build . -t xuqi/frps
-	docker run -d --name myfrps -p 7000:7000 -p 6000:6000 -p 6001:6001 -v $PWD/conf:/conf xuqi/frps
+``` powershell
+git clone https://github.com/fatedier/frp.git
+cd frp
+docker build . -t xuqi/frps
+docker run -d --name myfrps -p 7000:7000 -p 6000:6000 -p 6001:6001 -v $PWD/conf:/conf xuqi/frps
+```
 
 ### 安装aria2-ariang
-	mkdir -p ~/aria2-ariang
-	cd aria2-ariang
-	ln -s ~/data ./data
-	docker run -d --name myariang -p 8089:80 -p 6800:6800  -v $PWD/data/download:/data  wahyd4/aria2-ariang	
+```powershell
+mkdir -p ~/aria2-ariang
+cd aria2-ariang
+ln -s ~/data ./data
+docker run -d --name myariang -p 8089:80 -p 6800:6800  -v $PWD/data/download:/data  wahyd4/aria2-ariang	
+```
 
 ### Celery
-	docker run --link myredis:redis -e CELERY_BROKER_URL=redis://localhost:6379/0 --name mycelery -d celery
+```powershell
+docker run --link myredis:redis -e CELERY_BROKER_URL=redis://localhost:6379/0 --name mycelery -d celery
+```
 
 ### Node-RED
 
@@ -167,10 +185,12 @@ docker run -d --name mynodered -p 1880:1880 -v ~/node-red-data:/data  nodered/no
 
 
 ### mosquitto
-	mkdir -p ~/mosquitto/config
-	mkdir -p ~/mosquitto/data
-	mkdir -p ~/mosquitto/log
-	cd mosquitto
-	docker run -d --name mymosquitto -p 1883:1883 -p 9001:9001 -v mosquitto.conf:$PWD/config/mosquitto.conf -v $PWD/data -v $PWD/log eclipse-mosquitto
+```powershell
+mkdir -p ~/mosquitto/config
+mkdir -p ~/mosquitto/data
+mkdir -p ~/mosquitto/log
+cd mosquitto
+docker run -d --name mymosquitto -p 1883:1883 -p 9001:9001 -v mosquitto.conf:$PWD/config/mosquitto.conf -v $PWD/data -v $PWD/log eclipse-mosquitto
+```
 
 
